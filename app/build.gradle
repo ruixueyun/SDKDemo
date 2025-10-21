@@ -1,0 +1,132 @@
+plugins {
+    id 'com.android.application'
+}
+
+def buildTask = getGradle().getStartParameter().getTaskNames().toString().toLowerCase()
+if (buildTask.contains("overseas")) {
+    println("Task  apply plugin:`com.google.gms.google-services` " + buildTask)
+    apply plugin: 'com.google.gms.google-services'
+}
+
+Properties properties = new Properties()
+properties.load(rootProject.file('local.properties').newDataInputStream())
+def useLocalSdkCode = (properties.getProperty("use_local_sdk_code", "false") == "true")
+
+// 如果是本地测试瑞雪的版本号，提测者自己更改，如果不用明确的话，直接写 ”本地测试“ 即可
+def rxsdkVersionName = (useLocalSdkCode) ? "本地测试" : rootProject.ext.libraries.rxsdk_version
+
+def libs = rootProject.ext.libraries // 库
+android {
+    compileSdk rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.ruixue.sdk.publicdemo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 28
+        versionCode rootProject.ext.versionCode
+        versionName rxsdkVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            //混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig null //使用Flavors签名
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    flavorDimensions "versionCode"
+
+    productFlavors {
+        // 这里使用方可以自己的配置信息便于测试，demo 用了自己的签名，并没有上传 keystore 文件，所以可能编译不成功
+        // 海外
+
+        // 国内默认渠道 weile
+        ruixue {
+            applicationId "com.weile.jxmj"
+            resValue "string", "app_name", "RX Show"
+            versionCode rootProject.ext.versionCode
+            versionName rxsdkVersionName
+            manifestPlaceholders.put("AMAP_APIKEY", "2642d735325ae5de2d00328104fbb8ce")
+
+            //[可选]魅族 厂商参数，接入魅族推送时配置
+            manifestPlaceholders.put("MZ_APP_ID", "141345")
+            manifestPlaceholders.put("MZ_APP_KEY", "c3784b4268b446ffaf4163b647b8b521")
+            //[可选]小米厂 商参数，接入小米推送时配置
+            manifestPlaceholders.put("MI_APP_ID", "2882303761517690901")
+            manifestPlaceholders.put("MI_APP_KEY", "5441769030901")
+
+            // 这里设置是为了避免编译报错，渠道一般不需要此参数了
+            buildConfigField "String", "CHANNEL", "\"ruixue\""
+
+            dependencies {
+                if (useLocalSdkCode) {
+                    ruixueImplementation project(':channel:rxsdk_weile');
+                    ruixueImplementation project(':rxsdk_alimobile')
+                    ruixueImplementation project(':rxsdk_weixin')
+                    ruixueImplementation project(':rxsdk_alipay')
+                    ruixueImplementation project(':rxsdk_gaode')
+                    ruixueImplementation project(":rxsdk_unifypay")
+                    ruixueImplementation project(":rxsdk_yeepay")
+
+                    ruixueImplementation project(':push:rxsdk_push_huawei')
+                    ruixueImplementation project(':push:rxsdk_push_meizu')
+                    ruixueImplementation project(':push:rxsdk_push_mi')
+                } else {
+                    ruixueImplementation "com.ruixue:rxsdk_weile:${libs.rxsdk_version}"
+                    ruixueImplementation "com.ruixue:rxsdk_alimobile:${libs.rxsdk_version}"
+                    ruixueImplementation "com.ruixue:rxsdk_weixin_withpay:${libs.rxsdk_version}" // 微信带支付
+                    ruixueImplementation "com.ruixue:rxsdk_alipay:${libs.rxsdk_version}" // 支付宝支付
+                    ruixueImplementation "com.ruixue:rxsdk_h5pay:${libs.rxsdk_version}" // H5 支付
+                    ruixueImplementation "com.ruixue:rxsdk_unifypay:${libs.rxsdk_version}" // 银联支付
+                    ruixueImplementation "com.ruixue:rxsdk_yeepay:${libs.rxsdk_version}" // 易宝支付
+                    ruixueImplementation "com.ruixue:rxsdk_snfpay:${libs.rxsdk_version}" // 苏宁支付
+                }
+            }
+        }
+
+    }
+
+}
+
+dependencies {
+
+    implementation "androidx.appcompat:appcompat:${libs.appcompat}"
+    implementation "com.google.android.material:material:${libs.material}"
+    api project(':app-core')
+}
+
+configurations {
+    all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+
+/*    // 这里如果项目引用 bilibili 编译出现 duplicate class okhttp 相关的报错，可以打开下边这句话，否则注释掉
+    all*.exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    // 雷电
+    all*.exclude group: 'com.google.code.gson', module: 'gson'*/
+}

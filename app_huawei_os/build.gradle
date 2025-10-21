@@ -1,0 +1,118 @@
+plugins {
+    id 'com.android.application'
+}
+
+apply plugin: 'com.huawei.agconnect'
+
+def buildTask = getGradle().getStartParameter().getTaskNames().toString().toLowerCase()
+println("WLTest overseas buildTask:" + buildTask)
+if (buildTask.contains("overseas")) {
+    println("Task  apply plugin:`com.google.gms.google-services` " + buildTask)
+    apply plugin: 'com.google.gms.google-services'
+}
+
+Properties properties = new Properties()
+properties.load(rootProject.file('local.properties').newDataInputStream())
+def useLocalSdkCode = (properties.getProperty("use_local_sdk_code", "false") == "true")
+
+// 如果是本地测试瑞雪的版本号，提测者自己更改，如果不用明确的话，直接写 ”本地测试“ 即可
+def rxsdkVersionName = (useLocalSdkCode) ? "本地测试" : rootProject.ext.libraries.rxsdk_version
+
+def libs = rootProject.ext.libraries // 库
+android {
+    namespace 'com.weile.bygame.huawei'
+    compileSdk 34
+
+    signingConfigs {
+        // 这里使用方可以更改成自己的签名进行测试
+        byweilegame {
+            keyAlias "weilegame"
+            keyPassword "577588599"
+            storeFile file("../keystore/weileGlobal.keystore")
+            storePassword "577588599"
+        }
+        weilegame {
+            v1SigningEnabled true
+            v2SigningEnabled true
+
+            keyAlias "weilegame"
+            keyPassword "577588599"
+            storeFile file("../keystore/weileHall.keystore")
+            storePassword "577588599"
+        }
+        zhadanji {
+            keyAlias "jxmzone"
+            keyPassword "577588599"
+            storeFile file("../keystore/jxmzone.keystore")
+            storePassword "577588599"
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.weile.bygame.huawei"
+        resValue "string", "app_name", "海外华为Demo"
+        minSdkVersion 23
+        targetSdkVersion 34
+        versionCode 1
+        versionName rxsdkVersionName
+
+
+        manifestPlaceholders.put("FACEBOOK_APP_ID", "1688134101629555")
+        resValue "string", "facebook_app_id", "1688134101629555"
+        resValue "string", "facebook_client_token", "140aaab9e9bebae946b3d242be2bc19d"
+
+        resValue "string", "google_app_id", "728854069094"
+        resValue "string", "google_client_id", "728854069094-v0apajj7rd65s3abb8aj9kkub79rdt4f.apps.googleusercontent.com"
+
+        // 这里设置是为了避免编译报错，渠道一般不需要此参数了
+        buildConfigField "String", "CHANNEL", "\"overseas\""
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.byweilegame
+        }
+        debug {
+            signingConfig signingConfigs.byweilegame
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation "androidx.appcompat:appcompat:${libs.appcompat}"
+    implementation "com.google.android.material:material:${libs.material}"
+    api project(':app-core')
+
+    if (useLocalSdkCode) {
+        // 引用本地资源
+        implementation project(':overseas:rxsdk_overseas_huawei')
+        implementation project(':overseas:rxsdk_facebook')
+
+        implementation project(':push:rxsdk_push_huawei')
+        implementation project(':rxsdk_h5pay')
+
+    } else {
+        // 引用远程库
+        implementation "com.ruixue:rxsdk_overseas:${libs.rxsdk_version}"
+        implementation "com.ruixue:rxsdk_facebook:${libs.rxsdk_version}"
+
+        implementation "com.ruixue:rxsdk_push_huawei:${libs.rxsdk_version}"
+
+        implementation "com.ruixue:rxsdk_h5pay:${libs.rxsdk_version}"
+
+    }
+}

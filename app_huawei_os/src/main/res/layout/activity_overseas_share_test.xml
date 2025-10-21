@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="海外分享方式"
+        android:textColor="#131313"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/common_left_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/titleTv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/titleTv" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTv">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.nex3z.flowlayout.FlowLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/systemShareTextBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="系统分享文本" />
+
+                <Button
+                    android:id="@+id/systemShareImageBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="系统分享图片" />
+
+            </com.nex3z.flowlayout.FlowLayout>
+
+            <com.nex3z.flowlayout.FlowLayout
+                android:id="@+id/overseasShare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp">
+
+                <Button
+                    android:id="@+id/facebookShareImageBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Facebook 分享图片"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/facebookShareLinkBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Facebook 分享链接"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/lineShareLinkBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Line 分享链接"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/zaloShareLinkBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Zalo 分享链接"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/tiktokShareSingleImageBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Tiktok 分享单图"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/tiktokShareMoreImageBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Tiktok 分享多图"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/snapchatShareImageBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Snapchat 分享图片"
+                    android:textAllCaps="false" />
+
+            </com.nex3z.flowlayout.FlowLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

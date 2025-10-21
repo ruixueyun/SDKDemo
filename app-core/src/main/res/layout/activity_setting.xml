@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F5FA">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="100dp">
+
+            <View
+                android:id="@+id/topBgView"
+                android:layout_width="match_parent"
+                android:layout_height="181dp"
+                android:background="@drawable/setting_top_bg"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/topIconIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="41dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/setting_top_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/setting_back_icon"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/topTitleTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/topTitleTv" />
+
+            <TextView
+                android:id="@+id/topTitleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="73dp"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="SDK Demo" />
+
+            <TextView
+                android:id="@+id/topVersionTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@id/topTitleTv"
+                app:layout_constraintTop_toBottomOf="@id/topTitleTv"
+                tools:ignore="SpUsage"
+                tools:text="version" />
+
+            <LinearLayout
+                android:id="@+id/languageSelectBtn"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="149dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/common_white_card_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/setting_language_icon" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/setting_language_title"
+                    android:textColor="#131313"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/selectedLanguageTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:drawableEnd="@drawable/common_right_arrow_icon"
+                    android:drawablePadding="6dp"
+                    android:textColor="#AAA8AF"
+                    android:textSize="15dp"
+                    tools:text="简体中文" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/basicSettingTitleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:includeFontPadding="false"
+                android:text="@string/setting_basic_title"
+                android:textColor="#131313"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/languageSelectBtn"
+                app:layout_constraintTop_toBottomOf="@id/languageSelectBtn" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/screenOrientationContainer"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/common_white_card_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/basicSettingTitleTv">
+
+                <ImageView
+                    android:id="@+id/screenOrientationIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/setting_screen_orientation_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/screenOrientationTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:includeFontPadding="false"
+                    android:text="@string/setting_screen_orientation_title"
+                    android:textColor="#131313"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/screenOrientationIv"
+                    app:layout_constraintTop_toTopOf="@id/screenOrientationIv" />
+
+                <RadioButton
+                    android:id="@+id/landscapeRadioBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:button="@drawable/common_radio_button"
+                    android:paddingStart="6dp"
+                    android:text="@string/setting_orientation_landscape"
+                    app:layout_constraintEnd_toStartOf="@id/portraitRadioBtn"
+                    app:layout_constraintStart_toStartOf="@id/screenOrientationTv"
+                    app:layout_constraintTop_toBottomOf="@id/screenOrientationTv"
+                    tools:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/portraitRadioBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:button="@drawable/common_radio_button"
+                    android:paddingStart="6dp"
+                    android:text="@string/setting_orientation_portrait"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/landscapeRadioBtn"
+                    app:layout_constraintTop_toBottomOf="@id/screenOrientationTv"
+                    tools:checked="false" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/loginSelectContainer"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/common_white_card_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/screenOrientationContainer">
+
+                <ImageView
+                    android:id="@+id/loginSelectIv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/setting_login_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/loginSelectTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:includeFontPadding="false"
+                    android:text="@string/setting_login_title"
+                    android:textColor="#131313"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/loginSelectIv"
+                    app:layout_constraintTop_toTopOf="@id/loginSelectIv" />
+
+                <RadioButton
+                    android:id="@+id/vcodeLoginRadioBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:button="@drawable/common_radio_button"
+                    android:paddingStart="6dp"
+                    android:text="@string/setting_login_vcode"
+                    app:layout_constraintEnd_toStartOf="@id/accountLoginRadioBtn"
+                    app:layout_constraintStart_toStartOf="@id/loginSelectTv"
+                    app:layout_constraintTop_toBottomOf="@id/loginSelectTv"
+                    tools:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/accountLoginRadioBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:button="@drawable/common_radio_button"
+                    android:paddingStart="6dp"
+                    android:text="@string/setting_login_account"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/vcodeLoginRadioBtn"
+                    app:layout_constraintTop_toBottomOf="@id/loginSelectTv"
+                    tools:checked="false" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/quickLoginTitleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:includeFontPadding="false"
+                android:text="@string/setting_basic_title"
+                android:textColor="#131313"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/languageSelectBtn"
+                app:layout_constraintTop_toBottomOf="@id/loginSelectContainer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/setting_multi_select_bg"
+                android:includeFontPadding="false"
+                android:paddingStart="10dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="3dp"
+                android:text="@string/setting_multi_select"
+                android:textColor="#A29FAC"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="@id/quickLoginTitleTv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/quickLoginTitleTv" />
+
+            <LinearLayout
+                android:id="@+id/quickLoginContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/quickLoginTitleTv">
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/debug_view"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@color/transparent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/main_confirm_btn_selector"
+        android:enabled="true"
+        android:gravity="center"
+        android:text="@string/setting_btn_start_experience"
+        android:textColor="@color/main_area_confirm_btn"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+</FrameLayout>

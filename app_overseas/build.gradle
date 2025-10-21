@@ -1,0 +1,123 @@
+plugins {
+    id 'com.android.application'
+}
+
+def buildTask = getGradle().getStartParameter().getTaskNames().toString().toLowerCase()
+println("WLTest overseas buildTask:" + buildTask)
+if (buildTask.contains("overseas")) {
+    println("Task  apply plugin:`com.google.gms.google-services` " + buildTask)
+    apply plugin: 'com.google.gms.google-services'
+}
+
+Properties properties = new Properties()
+properties.load(rootProject.file('local.properties').newDataInputStream())
+def useLocalSdkCode = (properties.getProperty("use_local_sdk_code", "false") == "true")
+
+// 如果是本地测试瑞雪的版本号，提测者自己更改，如果不用明确的话，直接写 ”本地测试“ 即可
+def rxsdkVersionName = (useLocalSdkCode) ? "本地测试" : rootProject.ext.libraries.rxsdk_version
+
+def libs = rootProject.ext.libraries // 库
+android {
+    namespace 'com.weile.jxmj'
+    compileSdk 34
+
+    signingConfigs {
+        // 这里使用方可以更改成自己的签名进行测试
+        byweilegame {
+            keyAlias "weilegame"
+            keyPassword "577588599"
+            storeFile file("../keystore/weileGlobal.keystore")
+            storePassword "577588599"
+        }
+        weilegame {
+            v1SigningEnabled true
+            v2SigningEnabled true
+
+            keyAlias "weilegame"
+            keyPassword "577588599"
+            storeFile file("../keystore/weileHall.keystore")
+            storePassword "577588599"
+        }
+        zhadanji {
+            keyAlias "jxmzone"
+            keyPassword "577588599"
+            storeFile file("../keystore/jxmzone.keystore")
+            storePassword "577588599"
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.weile.jxmj"
+        resValue "string", "app_name", "RX Show"
+        minSdkVersion 23
+        targetSdkVersion 34
+        versionCode 1
+        versionName rxsdkVersionName
+
+        // 使用方更换成自己的 facebook_app_id facebook_client_token
+//        manifestPlaceholders.put("FACEBOOK_APP_ID", "1688134101629555")
+        manifestPlaceholders.put("FACEBOOK_APP_ID", "7472805502731255")
+        resValue "string", "facebook_app_id", "7472805502731255"
+        resValue "string", "facebook_client_token", "5ae6dd8dac4551ed3e7d347937a59359"
+        // 这里设置是为了避免编译报错，渠道一般不需要此参数了
+        buildConfigField "String", "CHANNEL", "\"overseas\""
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.weilegame
+        }
+        debug {
+            signingConfig signingConfigs.weilegame
+
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation "androidx.appcompat:appcompat:${libs.appcompat}"
+    implementation "com.google.android.material:material:${libs.material}"
+    api project(':app-core')
+
+    if (useLocalSdkCode) {
+        // 引用本地资源
+        implementation project(':overseas:rxsdk_overseas')
+        implementation project(':overseas:rxsdk_line')
+        implementation project(':overseas:rxsdk_zalo')
+        implementation project(':overseas:rxsdk_instagram')
+        implementation project(':overseas:rxsdk_tiktok')
+        implementation project(':overseas:rxsdk_reddit')
+        implementation project(':overseas:rxsdk_snapchat')
+        implementation project(':rxsdk_h5pay')
+        implementation project(':rxsdk_weixin')
+        implementation project(':rxsdk_catappult')
+        implementation project(':rxsdk_upay')
+    } else {
+        // 引用远程库
+        implementation "com.ruixue:rxsdk_overseas:${libs.rxsdk_version}"
+        implementation "com.ruixue:rxsdk_line:${libs.rxsdk_version}"
+        implementation "com.ruixue:rxsdk_zalo:${libs.rxsdk_version}"
+        implementation "com.ruixue:rxsdk_instagram:${libs.rxsdk_version}"
+        implementation "com.ruixue:rxsdk_tiktok:${libs.rxsdk_version}"
+        implementation "com.ruixue:rxsdk_reddit:${libs.rxsdk_version}"
+        implementation "com.ruixue:rxsdk_snapchat:${libs.rxsdk_version}"
+        implementation "com.ruixue:rxsdk_h5pay:${libs.rxsdk_version}"
+        implementation "com.ruixue:rxsdk_weixin:${libs.rxsdk_version}"
+        implementation "com.ruixue:rxsdk_catappult:${libs.rxsdk_version}"
+        implementation "com.ruixue:rxsdk_upay:${libs.rxsdk_version}"
+    }
+}

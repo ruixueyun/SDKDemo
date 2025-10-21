@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/topBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_top_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/main_top_icon"
+        android:translationX="67dp"
+        android:translationY="-88dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/topTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="143dp"
+        android:textColor="@color/white"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="SDK Demo" />
+
+    <TextView
+        android:id="@+id/topVersionTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@id/topTitleTv"
+        app:layout_constraintTop_toBottomOf="@id/topTitleTv"
+        tools:ignore="SpUsage"
+        tools:text="version" />
+
+    <View
+        android:id="@+id/bottomContainerBg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="310dp"
+        android:background="@drawable/main_bottom_bg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.ruixue.sdk.demo.ui.AreaSelectButton
+        android:id="@+id/chinaAreaBtn"
+        android:layout_width="134dp"
+        android:layout_height="207dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/main_area_select_btn_selector"
+        app:layout_constraintEnd_toStartOf="@id/overseasAreaBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bottomContainerBg" />
+
+    <com.ruixue.sdk.demo.ui.AreaSelectButton
+        android:id="@+id/overseasAreaBtn"
+        android:layout_width="134dp"
+        android:layout_height="207dp"
+        android:background="@drawable/main_area_select_btn_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/chinaAreaBtn"
+        app:layout_constraintTop_toTopOf="@id/chinaAreaBtn" />
+
+    <TextView
+        android:id="@+id/confirmButton"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginBottom="110dp"
+        android:background="@drawable/main_confirm_btn_selector"
+        android:enabled="true"
+        android:gravity="center"
+        android:text="@string/confirm"
+        android:textColor="@color/main_area_confirm_btn"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/main_area_bottom_tip"
+        android:textColor="#819895"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirmButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

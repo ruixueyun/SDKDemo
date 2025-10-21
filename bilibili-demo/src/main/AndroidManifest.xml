@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ruixue.sdk.demo.bilibili">
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/app_default_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app_default_icon"
+        android:supportsRtl="true"
+        android:theme="@style/ThemeTranslucent">
+        <activity
+            android:name=".BilibiliDemoActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--是否为付费下载游戏,如果是付费下载游戏value值为true,否则value值为false -->
+        <!--游戏付费下载指的是⽤户需要先购买才能下载游戏，与⽤户可以免费下载但是游戏内有内购是不同的 -->
+
+        <meta-data
+            android:name="BSGameSdk_PaidGame"
+            android:value="false" />
+
+        <!--    微信回调activity 可继承重写    -->
+        <activity
+            android:name="com.ruixue.sdk.BiliBiliWXEntryActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!--    微信回调activity别名类，因为微信需要回调到指定包名指定类名，所以设置别名     -->
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXEntryActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:targetActivity="com.ruixue.sdk.BiliBiliWXEntryActivity" />
+
+        <!--    微信回调activity别名类，因为微信需要回调到指定包名指定类名，所以设置别名     -->
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXPayEntryActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:targetActivity="com.ruixue.sdk.BiliBiliWXEntryActivity" />
+    </application>
+
+</manifest>

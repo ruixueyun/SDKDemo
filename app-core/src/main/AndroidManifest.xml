@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ruixue.sdk.demo.main">
+
+    <application>
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.RuiXueLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.PayPointListActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.PointPayTestActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.PayTypeSelectActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.SharePointListActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.PointShareTestActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.ShareTypeSelectActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.ChannelIDActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.ProDuctIdActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.SelectCpIdActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.HallActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.PayTestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!--    微信回调activity     -->
+        <activity
+            android:name="com.ruixue.wechat.WXEntryActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!--    微信回调activity别名类，因为微信需要回调到指定包名指定类名，所以设置别名     -->
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXEntryActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:targetActivity="com.ruixue.wechat.WXEntryActivity" />
+        <!--        微信支付回调activity别名类，和微信登录，微信分享的类名不一样-->
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXPayEntryActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:targetActivity="com.ruixue.wechat.WXEntryActivity" />
+    </application>
+</manifest>

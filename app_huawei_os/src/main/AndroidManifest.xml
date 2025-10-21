@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
+    <application
+         tools:replace="android:allowBackup" android:allowBackup="true"
+        android:name="com.ruixue.sdk.overseas.demo.MyApplication"
+        android:icon="@drawable/app_default_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app_default_icon"
+        android:supportsRtl="true"
+        android:theme="@style/ThemeTranslucent">
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
+        <!-- zalo -->
+        <meta-data
+            android:name="com.zing.zalo.zalosdk.appID"
+            android:value="@string/zalo_app_id" />
+        <!-- tiktok -->
+        <meta-data
+            android:name="com.ruixue.sdk.tiktok.clientKey"
+            android:value="awu72crzsonssopy" />
+        <meta-data
+            android:name="com.ruixue.sdk.tiktok.auth.scheme"
+            android:value="ruixue://sdkresponse" />
+
+
+        <meta-data
+            android:name="com.ruixue.sdk.instagram.clientId"
+            android:value="@string/instagram_client_id" />
+        <meta-data
+            android:name="com.ruixue.sdk.instagram.redirectUrl"
+            android:value="https://ruixue.com/instagram/oauth2" /> <!-- snapchat -->
+        <meta-data
+            android:name="com.snap.kit.clientId"
+            android:value="817a23af-8d9c-4707-bb2c-1965d15e37fa" />
+        <meta-data
+            android:name="com.snap.kit.redirectUrl"
+            android:value="qiye://rxloginresp/oauth2" />
+
+
+        <activity
+            android:name="com.ruixue.sdk.demo.activity.SettingActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeTranslucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <!-- 快手协议部分 使用方自行按照文档配置 https://doc.ruixuecloud.com/main/dev_doc/tripartite/kuaishou/clientAccess.html#%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E -->
+                <!-- <data -->
+                <!-- android:host="home" -->
+                <!-- android:scheme="ks+游戏缩写" /> -->
+                <!-- 模拟配置通知栏点击事件的跳转地址 -->
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="jixiang433" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.ruixue.sdk.overseas.demo.OverseasShareTestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+    </application>
+
+</manifest>

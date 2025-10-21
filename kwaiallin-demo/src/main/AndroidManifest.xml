@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ruixue.sdk.demo.kwaiallin">
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/app_default_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app_default_icon"
+        android:supportsRtl="true"
+        android:theme="@style/ThemeTranslucent"
+        tools:replace="android:allowBackup">
+        <activity
+            android:name="com.ruixue.sdk.demo.kwaiallin.DemoActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--[可选] 是否允许游客登录，默认不允许-->
+        <meta-data
+            android:name="kwai_allow_tourist"
+            android:value="true" />
+        <!--[可选] 是否不显示悬浮球，默认显示-->
+        <meta-data
+            android:name="kwai_disable_float_switch"
+            android:value="false" />
+        <!--[可选] 是否自定义隐私，true时使用自定义隐私界面，默认false使用快手 sdk 隐私界面-->
+        <meta-data
+            android:name="kwai_custom_privacy"
+            android:value="false" />
+    </application>
+</manifest>

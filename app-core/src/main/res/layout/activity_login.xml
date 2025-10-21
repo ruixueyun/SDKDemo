@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backgroundIv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        tools:background="@drawable/global_default_bg_portrait" />
+
+    <ImageView
+        android:id="@+id/changeBgTipIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/global_change_bg_tip_portrait"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/landscapeLoginBtn"
+        android:layout_width="297dp"
+        android:layout_height="46dp"
+        android:background="@drawable/login_btn_landscape_bg"
+        android:text="@string/start_login"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/changeBgTipIv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/portraitLoginBtn"
+        android:layout_width="215dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/login_btn_portrait_bg"
+        android:text="@string/start_login"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/changeBgTipIv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView android:id="@+id/backSettingBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_marginTop="70dp"
+        tools:layout_marginEnd="22dp"
+        android:src="@drawable/global_demo_back_to_setting"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

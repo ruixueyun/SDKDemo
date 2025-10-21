@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ruixue.sdk.demo.ysdk">
+    <!-- 网络请求 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取设备WIFI连接状态 ，非必要，但建议保留-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 检测网络状态 ，非必要，但建议保留 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 读取日志 ，非必要，但建议保留 -->
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+
+    <!-- Midas需要，向SD卡写入文件，非必要权限  -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 获取机型信息和运营商信息，非必要权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/app_default_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app_default_icon"
+        android:supportsRtl="true"
+        android:theme="@style/ThemeTranslucent"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".YSdkDemoActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--  GAME SDK接入YSDK初始化配置 START -->
+        <!--  android:value 要修改为游戏自身的MainActivity的完整路径，如YSDKDEMO的MainAcitiviy路径为com.tencent.tmgp.yybtestsdk.MainActivity -->
+        <!-- 如果AndroidManifest.xml配置MainActivity无效，可手动在LaunchActivity的onCreate()中调用YSDKApi.setMainActivity()接口设置游戏的MainActivity
+             示例：YSDKApi.setMainActivity("com.tencent.tmgp.yybtestsdk.MainActivity"); -->
+        <!--        <meta-data-->
+        <!--            android:name="MAIN_ACTIVITY"-->
+        <!--            android:value="com.tencent.tmgp.yybtestsdk.MainActivity"/>-->
+        <!--  GAME SDK接入YSDK初始化配置 END -->
+        <!--  鉴权SDK 接入配置 END -->
+
+        <!-- ysdk渠道  android:value要修改为游戏自身的MainActivity的完整路径，
+                  如YSDKDEMO的MainAcitiviy路径为com.tencent.tmgp.yybtestsdk.MainActivity />-->
+        <meta-data
+            android:name="MAIN_ACTIVITY"
+            android:value="com.ruixue.sdk.demo.ysdk.YSdkDemoActivity" />
+
+        <!-- 微信回调activity -->
+        <activity
+            android:name="com.ruixue.sdk.YSDKWXCallbackActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="WXEntryActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="${applicationId}.diff"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+
+            <!-- GAME android:taskAffinity这里为游戏微信登录的配置，游戏需要修改为自己的包名加.diff -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- GAME android:scheme这里为游戏微信登录的配置，游戏需要修改为自己的微信appid -->
+                <data android:scheme="${WX_APP_ID}" />
+            </intent-filter>
+        </activity>
+        <!-- GAME "${applicationId}.wxapi.WXEntryActivity，此处的${applicationId}需要修改为游戏自己的包名 -->
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.ruixue.sdk.YSDKWXCallbackActivity" />
+
+    </application>
+    <queries>
+        <!--   Android 11 微信分享无法拉起问题     -->
+        <package android:name="com.tencent.mm" />
+        <package android:name="com.tencent.mobileqq" />
+        <package android:name="com.tencent.android.qqdownloader" />
+    </queries>
+</manifest>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backgroundIv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        tools:background="@drawable/global_default_bg_landscape" />
+
+    <ImageView
+        android:id="@+id/changeBgTipIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/global_change_bg_tip_landscape" />
+
+    <Button
+        android:id="@+id/landscapeShareBtn"
+        android:layout_width="160dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/login_btn_portrait_bg"
+        android:text="@string/hall_share_methods"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/landscapeServiceBtn"
+        app:layout_constraintEnd_toStartOf="@id/landscapePayBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/landscapePayBtn"
+        android:layout_width="160dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/login_btn_portrait_bg"
+        android:text="@string/hall_pay_methods"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/landscapeServiceBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/landscapeShareBtn"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/landscapeServiceBtn"
+        android:layout_width="177dp"
+        android:layout_height="44dp"
+        android:background="@drawable/hall_service_btn"
+        android:text="@string/hall_service"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/portraitUserCenterBtn"
+        app:layout_constraintEnd_toStartOf="@id/landscapeUserCenterBtn"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/landscapeUserCenterBtn"
+        android:layout_width="177dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/hall_user_center_btn"
+        android:text="@string/hall_user_center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/changeBgTipIv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/landscapeServiceBtn"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/portraitShareBtn"
+        android:layout_width="215dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/login_btn_portrait_bg"
+        android:text="@string/hall_share_methods"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/portraitPayBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="gone" />
+
+    <Button
+        android:id="@+id/portraitPayBtn"
+        android:layout_width="215dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/login_btn_portrait_bg"
+        android:text="@string/hall_pay_methods"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/portraitServiceBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="gone" />
+
+    <Button
+        android:id="@+id/portraitServiceBtn"
+        android:layout_width="215dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/login_btn_portrait_bg"
+        android:text="@string/hall_service"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/portraitUserCenterBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="gone" />
+
+    <Button
+        android:id="@+id/portraitUserCenterBtn"
+        android:layout_width="215dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/login_btn_portrait_bg"
+        android:text="@string/hall_user_center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/changeBgTipIv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/global_demo_back_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_marginEnd="22dp"
+        tools:layout_marginTop="70dp" />
+
+    <ImageView
+        android:id="@+id/backSettingBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/global_demo_back_to_setting"
+        app:layout_constraintEnd_toEndOf="@id/backBtn"
+        app:layout_constraintTop_toBottomOf="@id/backBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

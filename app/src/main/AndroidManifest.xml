@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ruixue.sdk.demo">
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/app_default_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app_default_icon"
+        android:supportsRtl="true"
+
+        android:theme="@style/ThemeTranslucent"
+        tools:replace="android:theme,android:allowBackup">
+
+        <activity
+            android:name="com.ruixue.wechat.WXEntryActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" /> <!-- 微信回调activity别名类，因为微信需要回调到指定包名指定类名，所以设置别名 -->
+        <!-- tools:replace="android:targetActivity" 这里由于 app 项目中有了，所以加了这个属性，使用方根据自己实际情况，可以考虑不加 -->
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXEntryActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:targetActivity="com.ruixue.wechat.WXEntryActivity"
+            tools:replace="android:targetActivity" /> <!-- 微信支付回调activity别名类，和微信登录，微信分享的类名不一样 -->
+        <!-- tools:replace="android:targetActivity" 这里由于 app 项目中有了，所以加了这个属性，使用方根据自己实际情况，可以考虑不加 -->
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXPayEntryActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:targetActivity="com.ruixue.wechat.WXEntryActivity"
+            tools:replace="android:targetActivity" />
+
+        <activity
+            android:name=".activity.SettingActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeTranslucent" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <!-- 快手协议部分 使用方自行按照文档配置 https://doc.ruixuecloud.com/main/dev_doc/tripartite/kuaishou/clientAccess.html#%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E -->
+                <!-- <data -->
+                <!-- android:host="home" -->
+                <!-- android:scheme="ks+游戏缩写" /> -->
+                <!-- 模拟配置通知栏点击事件的跳转地址 -->
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="jixiang433" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.ruixue.sdk.demo.ShareTestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+    </application>
+
+</manifest>

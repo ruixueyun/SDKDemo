@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="支付方式"
+        android:textColor="#131313"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/common_left_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/titleTv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/titleTv" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTv">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <com.nex3z.flowlayout.FlowLayout
+                android:id="@+id/internalPay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/wxSdkPayBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="微信SDK支付" />
+
+                <Button
+                    android:id="@+id/wxH5PayBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="微信H5支付" />
+
+                <Button
+                    android:id="@+id/alipaySdkPayBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="支付宝SDK支付" />
+
+                <Button
+                    android:id="@+id/alipayH5PayBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="支付宝H5支付" />
+
+                <Button
+                    android:id="@+id/yeePayBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="易宝支付" />
+
+                <Button
+                    android:id="@+id/jdPayBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="京东支付" />
+
+                <Button
+                    android:id="@+id/snWxPayBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="苏宁微信支付" />
+
+                <Button
+                    android:id="@+id/ylWxPayBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="银联微信支付" />
+
+                <Button
+                    android:id="@+id/ylAliPayBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="银联支付宝支付" />
+
+                <Button
+                    android:id="@+id/ylMiniGameBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="银联小游戏支付" />
+
+                <Button
+                    android:id="@+id/ylYsfBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="银联云闪付" />
+
+                <Button
+                    android:id="@+id/ylWxPluginBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="银联微信插件" />
+
+                <Button
+                    android:id="@+id/ylAliPayPluginBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="银联支付宝插件" />
+
+                <Button
+                    android:id="@+id/ylYsfPluginBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="银联云闪付插件" />
+
+                <Button
+                    android:id="@+id/rxH5pay"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="瑞雪H5收银台" />
+
+            </com.nex3z.flowlayout.FlowLayout>
+
+            <com.nex3z.flowlayout.FlowLayout
+                android:id="@+id/overseasPay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp">
+
+                <Button
+                    android:id="@+id/googlePayBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Google Pay"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/upayNetBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="UPAY NET"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/upayWwwCardBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="UPAY WWW Card"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/upayApiBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="UPAY API"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/payermaxBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Payermax"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/xsollaBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="XSolla"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/aptoideBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Aptoide"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/checkoutBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Checkout"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/unipinBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Unipin"
+                    android:textAllCaps="false" />
+
+            </com.nex3z.flowlayout.FlowLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,206 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+def getLocalProperty(String key, String defaultValue) {
+    def propertiesFile = rootDir.toPath().resolve('local.properties').toFile()
+    if (propertiesFile.exists()) {
+        def properties = new Properties()
+        propertiesFile.withInputStream { stream ->
+            properties.load(stream)
+        }
+        return properties.getProperty(key, defaultValue)
+    }
+    return defaultValue
+}
+
+buildscript {
+//    ext.kotlin_version = '1.7.10'
+
+    ext {
+        kotlin_version = '1.4.0'
+        buildToolsVersion = '30.0.3'
+        targetSdkVersion = 28
+        minSdkVersion = 21
+        compileSdkVersion = 34
+        versionCode = 1
+        versionName = '1.0.0'
+
+        libraries = [
+                junit           : "4.+",
+                test_ext_junit  : "1.1.3",
+                espresso_core   : "3.4.0",
+                appcompat       : "1.4.2",
+                material        : '1.4.0',
+                gson            : "2.8.8",
+                glide           : '4.13.2',
+                constraintlayout: "2.1.2",
+                rxsdk_version   : "3.7.12"
+        ]
+    }
+
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }//central仓和jcenter仓的聚合仓
+        google()
+        mavenCentral()
+        maven { url 'https://developer.hihonor.com/repo' }
+        maven { url 'https://developer.huawei.com/repo/' }
+        //library_openMediation
+//        maven {testImplementation
+//            url 'https://dl.openmediation.com/omcenter/'
+//        }
+//        //字节游戏联运
+//        maven {
+//            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
+//        }
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.1'
+//        classpath 'com.android.tools.build:gradle:4.2.2'
+
+        def task = getGradle().getStartParameter().getTaskNames().toString().toLowerCase()
+        println "Task :" + task
+        classpath 'com.huawei.agconnect:agcp:1.9.1.300'
+        if (task.contains("huawei")) {//华为
+//            classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+
+        } else if (task.contains("overseas")) {
+            classpath 'com.google.gms:google-services:4.1.0'
+        }
+        //        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+        if (task.contains("firebase") || task.contains("clean") || task == "[]") {
+            // Add the dependency for the Crashlytics Gradle plugin
+            classpath 'com.google.firebase:firebase-crashlytics-gradle:2.4.1'
+            classpath 'com.google.gms:google-services:4.3.2'
+        }
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
+
+        //字节游戏联运接入文档 v2.0.5.2
+//        classpath 'com.bytedance.ttgame:gbsdk_helper:1.0.9'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle filesw
+
+        // Add the following line: 在根级（项目级）Gradle 文件 (build.gradle) 中添加规则，以纳入 Google 服务 Gradle 插件。此外，请确认您拥有 Google 的 Maven 代码库。
+//        classpath 'com.google.gms:google-services:4.3.10'  // Google Services plugin
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }//central仓和jcenter仓的聚合仓
+        maven { url "https://maven-release.webapp.163.com/repository/maven-releases/" }
+        //字节游戏联运
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url 'https://artifact.bytedance.com/repository/ttgamesdk/'
+        }
+        //增加小米游戏SDK的Maven仓库地址
+        maven {
+            url "https://repos.xiaomi.com/maven"
+            credentials {
+                username 'mi-gamesdk'
+                password 'AKCp8mYeLuhuaGj6bK1XK7t2w4CsPuGwg6GpQdZ9cat7K59y5sD7Tx3dHjJcFrBGj3TQ4vi7g'
+            }
+        }
+        // 华为的库的仓库地址
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven {
+            url "https://gitee.com/mopush/androidrepo/raw/master/"//MO PUSH maven 地址
+        }
+        //library_openMediation
+        maven {
+            url 'https://dl.openmediation.com/omcenter/'
+        }
+
+
+        //oppo push
+        maven {
+            url 'https://maven.columbus.heytapmobi.com/repository/releases/'
+            credentials {
+                username 'nexus'
+                password 'c0b08da17e3ec36c3870fed674a0bcb36abc2e23'
+            }
+        }
+
+        maven {
+            credentials {
+                username '600685104fb2132a19e09a29'
+                password '2IfrbLKz50J1'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2168735-release-Zcdy1x/'
+        }
+        maven {
+            credentials {
+                username '600685104fb2132a19e09a29'
+                password '2IfrbLKz50J1'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2168735-snapshot-WdZfVk/'
+        }
+
+        maven {
+            // 4399 SDK 开放仓库：正式
+            url 'https://mvn.4399doc.com/repository/maven-releases'
+        }
+        maven {
+            // 4399 SDK 开放仓库：快照
+            url 'https://mvn.4399doc.com/repository/maven-snapshots'
+        }
+        // 巨量广告
+        maven {
+            url 'https://artifact.bytedance.com/repository/Volcengine/'
+        }
+        //tiktok
+        maven { url "https://artifact.bytedance.com/repository/AwemeOpenSDK" }
+        //huawei
+        maven { url 'https://developer.hihonor.com/repo' }
+
+        //Anythink(Core)
+        maven {
+            url "https://jfrog.anythinktech.com/artifactory/overseas_sdk"
+        }
+
+        //Pangle
+        maven {
+            url "https://artifact.bytedance.com/repository/pangle"
+        }
+
+        // zalo
+        maven {
+            url "https://gitlab.com/api/v4/projects/50747855/packages/maven"
+            name "GitLabZaloSDK"
+        }
+
+        google()
+        mavenCentral()
+    }
+}
+
+task listZaloSDKVersions {
+    doLast {
+        def repoUrl = 'https://gitlab.com/api/v4/projects/50747855/packages/maven'
+        def artifactPath = 'me/zalo/sdk-openapi'
+        def metadataUrl = "${repoUrl}/${artifactPath}/maven-metadata.xml"
+
+        def metadata = new XmlSlurper().parse(metadataUrl)
+        metadata.versioning.versions.version.each { version ->
+            println "WLTest zalo sdk-openapi version >> $version"
+        }
+
+        def authMetadataUrl = "${repoUrl}/me/zalo/sdk-auth/maven-metadata.xml"
+        def authMetadata = new XmlSlurper().parse(authMetadataUrl)
+        authMetadata.versioning.versions.version.each { version ->
+            println "WLTest zalo sdk-auth version >> $version"
+        }
+
+        def coreMetadataUrl = "${repoUrl}/me/zalo/sdk-core/maven-metadata.xml"
+        def coreMetadata = new XmlSlurper().parse(coreMetadataUrl)
+        coreMetadata.versioning.versions.version.each { version ->
+            println "WLTest zalo sdk-core version >> $version"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

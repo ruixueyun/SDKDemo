@@ -1,0 +1,156 @@
+rootProject.name = "rxsdk-public-android-demo"
+
+// 定义一个方法来读取 local.properties 文件
+def getLocalProperty(String key, String defaultValue) {
+    def propertiesFile = rootDir.toPath().resolve('local.properties').toFile()
+    if (propertiesFile.exists()) {
+        def properties = new Properties()
+        propertiesFile.withInputStream { stream ->
+            properties.load(stream)
+        }
+        return properties.getProperty(key, defaultValue)
+    }
+    return defaultValue
+}
+
+def useLocalSdkCode= (getLocalProperty("use_local_sdk_code", "false") == "true")
+def localSdkRoot = getLocalProperty("local_sdk_root", "")
+
+include ':app'
+include ':app_overseas'
+include ':app-core'
+include ':ysdk-demo'
+include ':m4399-demo'
+include ':baidu-demo'
+include ':bilibili-demo'
+include ':douyin-demo'
+include ':honor-demo'
+include ':huawei-demo'
+include ':kwai-demo'
+include ':kwaiallin-demo'
+include ':oppo-demo'
+include ':taptap-demo'
+include ':vivo-demo'
+include ':xiaomi-demo'
+include ':qoo-demo'
+include ':leidian-demo'
+include ':jiuyou-demo'
+include ':mumu-demo'
+include ':unipin-demo'
+include ':topon-demo'
+
+if (useLocalSdkCode) {
+    include ':rxsdk_bugly'
+    project(':rxsdk_bugly').projectDir = new File(localSdkRoot + '/rxsdk_bugly')
+    include ':rxsdk_oaid'
+    project(':rxsdk_oaid').projectDir = new File(localSdkRoot + '/rxsdk_oaid')
+    include ':rxsdk_oaidv2'
+    project(':rxsdk_oaidv2').projectDir = new File(localSdkRoot + '/rxsdk_oaidv2')
+    include ':rxsdk_base'
+    project(':rxsdk_base').projectDir = new File(localSdkRoot + '/rxsdk_base')
+    include ':rxsdk_base_ui'
+    project(':rxsdk_base_ui').projectDir = new File(localSdkRoot + '/rxsdk_base_ui')
+
+    include ':rxsdk_weixin'
+    project(':rxsdk_weixin').projectDir = new File(localSdkRoot + '/rxsdk_weixin')
+    include ':rxsdk_weixin_withpay'
+    project(':rxsdk_weixin_withpay').projectDir = new File(localSdkRoot + '/rxsdk_weixin_withpay')
+    include ':rxsdk_gaode'
+    project(':rxsdk_gaode').projectDir = new File(localSdkRoot + '/rxsdk_gaode')
+    include ':rxsdk_alimobile'
+    project(':rxsdk_alimobile').projectDir = new File(localSdkRoot + '/rxsdk_alimobile')
+    include ':rxsdk_txmobile'
+    project(':rxsdk_txmobile').projectDir = new File(localSdkRoot + '/rxsdk_txmobile')
+    include ':rxsdk_alipay'
+    project(':rxsdk_alipay').projectDir = new File(localSdkRoot + '/rxsdk_alipay')
+    include ':rxsdk_catappult'
+    project(':rxsdk_catappult').projectDir = new File(localSdkRoot + '/rxsdk_catappult')
+
+    include ':overseas:rxsdk_overseas'
+    project(':overseas:rxsdk_overseas').projectDir = new File(localSdkRoot + '/overseas/rxsdk_overseas')
+    include ':overseas:rxsdk_google'
+    project(':overseas:rxsdk_google').projectDir = new File(localSdkRoot + '/overseas/rxsdk_google')
+    include ':overseas:rxsdk_firebase'
+    project(':overseas:rxsdk_firebase').projectDir = new File(localSdkRoot + '/overseas/rxsdk_firebase')
+    include ':overseas:rxsdk_adjust'
+    project(':overseas:rxsdk_adjust').projectDir = new File(localSdkRoot + '/overseas/rxsdk_adjust')
+    include ':overseas:rxsdk_facebook'
+    project(':overseas:rxsdk_facebook').projectDir = new File(localSdkRoot + '/overseas/rxsdk_facebook')
+    include ':overseas:rxsdk_line'
+    project(':overseas:rxsdk_line').projectDir = new File(localSdkRoot + '/overseas/rxsdk_line')
+    include ':overseas:rxsdk_tiktok'
+    project(':overseas:rxsdk_tiktok').projectDir = new File(localSdkRoot + '/overseas/rxsdk_tiktok')
+    include ':overseas:rxsdk_zalo'
+    project(':overseas:rxsdk_zalo').projectDir = new File(localSdkRoot + '/overseas/rxsdk_zalo')
+    include ':overseas:rxsdk_snapchat'
+    project(':overseas:rxsdk_snapchat').projectDir = new File(localSdkRoot + '/overseas/rxsdk_snapchat')
+    include ':overseas:rxsdk_instagram'
+    project(':overseas:rxsdk_instagram').projectDir = new File(localSdkRoot + '/overseas/rxsdk_instagram')
+    include ':overseas:rxsdk_reddit'
+    project(':overseas:rxsdk_reddit').projectDir = new File(localSdkRoot + '/overseas/rxsdk_reddit')
+    include ':overseas:rxsdk_qoo'
+    project(':overseas:rxsdk_qoo').projectDir = new File(localSdkRoot + '/overseas/rxsdk_qoo')
+
+    include ':channel:rxsdk_xiaomi'
+    project(':channel:rxsdk_xiaomi').projectDir = new File(localSdkRoot + '/channel/rxsdk_xiaomi')
+    include ':channel:rxsdk_ysdk'
+    project(':channel:rxsdk_ysdk').projectDir = new File(localSdkRoot + '/channel/rxsdk_ysdk')
+    include ':channel:rxsdk_weile'
+    project(':channel:rxsdk_weile').projectDir = new File(localSdkRoot + '/channel/rxsdk_weile')
+    include ':channel:rxsdk_vivo'
+    project(':channel:rxsdk_vivo').projectDir = new File(localSdkRoot + '/channel/rxsdk_vivo')
+    include ':channel:rxsdk_oppo'
+    project(':channel:rxsdk_oppo').projectDir = new File(localSdkRoot + '/channel/rxsdk_oppo')
+    include ':channel:rxsdk_huawei'
+    project(':channel:rxsdk_huawei').projectDir = new File(localSdkRoot + '/channel/rxsdk_huawei')
+    include ':channel:rxsdk_honor'
+    project(':channel:rxsdk_honor').projectDir = new File(localSdkRoot + '/channel/rxsdk_honor')
+    include ':channel:rxsdk_kwaiallin'
+    project(':channel:rxsdk_kwaiallin').projectDir = new File(localSdkRoot + '/channel/rxsdk_kwaiallin')
+    include ':channel:rxsdk_kwai_buy'
+    project(':channel:rxsdk_kwai_buy').projectDir = new File(localSdkRoot + '/channel/rxsdk_kwai_buy')
+    include ':channel:rxsdk_douyin_gb'
+    project(':channel:rxsdk_douyin_gb').projectDir = new File(localSdkRoot + '/channel/rxsdk_douyin_gb')
+    include ':channel:rxsdk_baidu_wangxun'
+    project(':channel:rxsdk_baidu_wangxun').projectDir = new File(localSdkRoot + '/channel/rxsdk_baidu_wangxun')
+    include ':channel:rxsdk_bilibili'
+    project(':channel:rxsdk_bilibili').projectDir = new File(localSdkRoot + '/channel/rxsdk_bilibili')
+    include ':channel:rxsdk_taptap'
+    project(':channel:rxsdk_taptap').projectDir = new File(localSdkRoot + '/channel/rxsdk_taptap')
+    include ':channel:rxsdk_4399'
+    project(':channel:rxsdk_4399').projectDir = new File(localSdkRoot + '/channel/rxsdk_4399')
+    include ':channel:rxsdk_yofun'
+    project(':channel:rxsdk_yofun').projectDir = new File(localSdkRoot + '/channel/rxsdk_yofun')
+    include ':channel:rxsdk_9game'
+    project(':channel:rxsdk_9game').projectDir = new File(localSdkRoot + '/channel/rxsdk_9game')
+    include ':channel:rxsdk_ld'
+    project(':channel:rxsdk_ld').projectDir = new File(localSdkRoot + '/channel/rxsdk_ld')
+
+
+//push
+    include ':push:rxsdk_push_base'
+    project(':push:rxsdk_push_base').projectDir = new File(localSdkRoot + '/push/rxsdk_push_base')
+    include ':push:rxsdk_push_mi'
+    project(':push:rxsdk_push_mi').projectDir = new File(localSdkRoot + '/push/rxsdk_push_mi')
+    include ':push:rxsdk_push_huawei'
+    project(':push:rxsdk_push_huawei').projectDir = new File(localSdkRoot + '/push/rxsdk_push_huawei')
+    include ':push:rxsdk_push_honor'
+    project(':push:rxsdk_push_honor').projectDir = new File(localSdkRoot + '/push/rxsdk_push_honor')
+    include ':push:rxsdk_push_vivo'
+    project(':push:rxsdk_push_vivo').projectDir = new File(localSdkRoot + '/push/rxsdk_push_vivo')
+    include ':push:rxsdk_push_oppo'
+    project(':push:rxsdk_push_oppo').projectDir = new File(localSdkRoot + '/push/rxsdk_push_oppo')
+    include ':push:rxsdk_push_meizu'
+    project(':push:rxsdk_push_meizu').projectDir = new File(localSdkRoot + '/push/rxsdk_push_meizu')
+//
+    include ':rxsdk_unifypay'
+    project(':rxsdk_unifypay').projectDir = new File(localSdkRoot + '/rxsdk_unifypay')
+    include ':rxsdk_upay'
+    project(':rxsdk_upay').projectDir = new File(localSdkRoot + '/rxsdk_upay')
+    include ':rxsdk_snfpay'
+    project(':rxsdk_snfpay').projectDir = new File(localSdkRoot + '/rxsdk_snfpay')
+    include ':rxsdk_h5pay'
+    project(':rxsdk_h5pay').projectDir = new File(localSdkRoot + '/rxsdk_h5pay')
+    include ':rxsdk_yeepay'
+    project(':rxsdk_yeepay').projectDir = new File(localSdkRoot + '/rxsdk_yeepay')
+}
